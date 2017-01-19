@@ -19,6 +19,35 @@ var Game = (function(){
             return ~~(Math.random() * (max - min + 1)) + min;
         }
 
+		function GetThing(height, width){
+			var thing = 
+			[
+				[0,0,0,0,0,0,0,0],
+				[0,0,1,0,0,0,0,0],
+				[0,1,1,1,0,0,0,0],
+				[1,0,0,1,0,0,0,0],
+				[1,1,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0],
+				[0,0,0,1,0,0,0,0],
+				[1,0,1,0,0,0,0,0],
+				[1,0,1,0,0,0,0,0],
+				[1,1,0,1,0,0,0,0],
+				[0,0,1,1,0,0,0,0]
+			];
+
+			var board = GetEmptyBoard(height, width);
+			
+			for(var i = 0; i < 13; i++){
+				for(var j = 0; j < 8; j++){
+					board[i][j] = thing[i][j];
+				}
+			}
+
+			return board;
+		}
+
 		function GetGliderGun(height, width){
 
 			var glider = 
@@ -127,6 +156,7 @@ var Game = (function(){
 		}
 
 		return {
+			GetThing: GetThing,
 			GetGliderGun: GetGliderGun, 
 			ClearBoard: ClearBoard,
 			ProcessGrid: ProcessGrid,
@@ -270,11 +300,15 @@ var Game = (function(){
 			}
 
 			var canvasMouseDown = function(e){
+				
 				if((!proceed)){
-					var mouseX = e.pageX - this.offsetLeft;
-					var mouseY = e.pageY - this.offsetTop;
-					var yIndex = ~~((e.pageY - this.offsetTop)/mouseCellArea); 
-					var xIndex = ~~((e.pageX - this.offsetLeft)/mouseCellArea);
+
+					var rect = canvas[0].getBoundingClientRect();
+					var mouseX = e.clientX - rect.left;
+					var mouseY = e.clientY - rect.top;
+					var yIndex = ~~((mouseY)/mouseCellArea); 
+					var xIndex = ~~((mouseX)/mouseCellArea);
+					console.log(yIndex+" "+xIndex);
 					var value; 
 					if( !(grid[yIndex] === undefined || grid[yIndex][xIndex] === undefined) ){
 						value = grid[yIndex][xIndex];
@@ -283,6 +317,7 @@ var Game = (function(){
 						previousYIndex = yIndex;
 						previousXIndex = xIndex;
 					}
+					//console.log(mouseX+" "+mouseY);
 				}
 			}
 
