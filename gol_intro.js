@@ -308,7 +308,6 @@ var Game = (function(){
 					var mouseY = e.clientY - rect.top;
 					var yIndex = ~~((mouseY)/mouseCellArea); 
 					var xIndex = ~~((mouseX)/mouseCellArea);
-					console.log(yIndex+" "+xIndex);
 					var value; 
 					if( !(grid[yIndex] === undefined || grid[yIndex][xIndex] === undefined) ){
 						value = grid[yIndex][xIndex];
