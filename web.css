@@ -1,0 +1,121 @@
+            html, body
+            {
+                margin:0;
+                padding: 0;
+                background-color: black;
+                height: 100%;
+				overflow: hidden;
+            }
+            @font-face
+            {
+                font-family: Poiret;
+                src:url(fonts/PoiretOne-Regular.ttf);
+                src:url(fonts/PoiretOne-Regular.woff);
+            }
+            .wrapper
+            {
+                min-width:780px;
+                max-width: 90%;
+                height:100%;
+                min-height: 750px;
+                background-color: #111;
+                margin: 0 auto;
+            }
+
+            .left, .middle, .right
+            {
+                display: inline-block;
+                margin-top: 2.5%;
+                height: 90%;
+            }
+            .right, .left
+            {
+                width: 18%;
+                background-color: #212121;
+            }
+            .right
+            {
+                float: right;
+            }
+            .middle
+            {
+                background-color: #cfcfcf;
+                width: 64%;
+                font-family: sans-serif;
+                overflow: auto;
+				
+            }
+            .left
+            {
+                float: left;
+
+            }
+
+            nav a, #top
+            {
+                display: block;
+                background-color: #DCDCDC;
+                text-align: center;
+                font-size: 1.5em;
+                padding: 25px 0px;
+                margin: 5px;
+                font-family: Poiret, Segoe UI, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+
+            }
+            nav a, a:visited
+            {
+                text-decoration: none;
+                color:black;
+            }
+            #top
+            {
+				background: -webkit-linear-gradient(315deg,#000 96%, #DCDCDC 95%);
+				background: linear-gradient(135deg,#000 96%, #DCDCDC 95%);
+                color:#DCDCDC;
+            }
+            #current
+            {
+                background-color: #DCDCDC;
+                margin-right: 0px;
+            }
+            nav :not(.nohover):hover
+            {
+                background-color: #DCDCDC;
+            }
+
+            .content
+            {
+                padding: 10%;
+            }
+            .header
+            {
+                width:100%;
+            }
+            .header span
+            {
+                text-align: center;
+            }
+            .side
+            {
+                float: right;
+                right: 0;
+                max-width:100%;
+                top:0;
+                font-family: Poiret, Segoe UI, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+                padding: 0;
+                margin:0; 
+                z-index: 100;
+            }
+            .side a
+            {
+                display: inline-block;
+                margin: 0px 0px 5px 5px;
+                background-color: #adadad;
+                padding: 5px;
+                border: 1px solid #adadad;
+                text-decoration: none;
+                color: black;
+				font-size: 1.5em;
+
+            }
+            

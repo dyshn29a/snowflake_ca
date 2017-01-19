@@ -7,10 +7,24 @@ html, body {
 }
 
 
+p, h1 {
+	margin: 2.5% 5% 2.5% 5% ;
+}
+
+p, pre {
+
+	font-family: sans-serif;
+	font-size: 1em;
+
+}
 
 .canvas_holder {
 
 	display: inline-block;
+	border: 1px solid darkgray;
+	padding: 20px;
+	background: black;
+	margin: 2.5% 5% 2.5% 5% ;
 	
 }
 
@@ -22,10 +36,4 @@ html, body {
 .center {
 	display: inline-block;
 }
-
-.go, .stop {
-
-	
-}
-
 

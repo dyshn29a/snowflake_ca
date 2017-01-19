@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 	<head>
 
 		<meta charset="UTF-8" />
-		<link href="intro.css" rel="stylesheet">
+		<link href="intro.css" type="text/css" rel="stylesheet">
+		<link href="web.css" type="text/css" rel="stylesheet">	
 		<script
 			  src="https://code.jquery.com/jquery-3.1.1.min.js"
 			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -16,24 +17,161 @@
 
 	<body>
 
-		<div id="outer1" class="canvas_holder">
-			<canvas id="canvas1" ></canvas>
-		</div>
 
-		<div id="outer2" class="canvas_holder">
-			<canvas id="canvas2" ></canvas>
-		</div>
+        <div class="wrapper">
+            <div class="left">
+                <nav>
+                    <div id="top" class="nohover">snowflake_ca</div>
+                    <a>Introduction</a>
+                    <a href="https://dyshn29a.github.io/snowflake_ca/multi/">Multi-snowflake demo</a>
+                    <a href="https://dyshn29a.github.io/">Back to site index</a>
+                </nav>
+            </div>
 
-		<div id="outer3" class="canvas_holder">
-			<canvas id="canvas3" ></canvas>
-		</div>
+            <div class="middle">
 
-		<div id="outer4" class="canvas_holder">
-		</div>
+				<h1>Introduction</h1>
+		
+				<p>
+					This project generates random snowflakes with the html5 canvas and web worker APIs. 
 
-		<div id="outer5" class="canvas_holder">
-		</div>
+					It was prompted by 
+					<a href = "https://mathematica.stackexchange.com/questions/39361/how-to-generate-a-random-snowflake">this thread</a> 
+					on the Mathematica StackExchange about generating random snowflakes.
 
+				</p>
+
+				<p>
+					Some of the responses in the thread approach the problem using 
+					<a href = "http://mathworld.wolfram.com/CellularAutomaton.html">
+					cellular automata.
+					</a> 
+					I decided to take that approach as well.
+					If you're familiar with 
+					<a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" >
+					Conway's Game of Life
+					</a>
+					, all I've done here is make it work on a hexagonal grid, seeding the grid with a random 6-sided pattern, with randomized rules.
+				</p>
+
+				
+
+				<pre>
+	Conway's Game of Life, explained briefly:
+
+	Take a grid of cells and play a game with rules and rounds.
+
+		Cells are either alive or dead.
+
+		Rules: Count a cell's neighbors. Kill, resurrect, or ignore cells based on this count.
+
+		Rounds: The next round is the grid after all the rules have been applied. Repeat.
+				</pre>
+
+				
+
+				<p>
+					Here it is in action:
+				</p>
+
+						<div id="outer1" class="canvas_holder">
+							<canvas id="canvas1" ></canvas>
+						</div>
+
+				<p>
+					If that looks too chaotic, consider <a href = "https://en.wikipedia.org/wiki/Gun_(cellular_automaton)">Gosper's Glider Gun</a>. 
+				</p>
+				<p>
+					Here, we see that these simple rules can enable orderly, self-replicating patterns.
+				</p>
+
+						<br>
+
+						<div id="outer2" class="canvas_holder">
+							<canvas id="canvas2" ></canvas>
+						</div>
+
+
+				<h1>Some implementation details</h1>
+
+				<p>
+					Again, what we're doing here is applying the ideas in Conway's Game of Life to a hexagonal grid of cells. 
+					We have to seed a random, six-sided pattern onto the grid, and then start running the game. 
+					The code that takes care of this random pattern generation can be found here in the 
+					<a href="https://github.com/dyshn29a/snowflake_ca/blob/master/multi/scripts/generate.js">
+					generate.js
+					</a> 
+					file.
+				</p>
+
+				<p>
+					The rules governing life and death on a hexagonal grid now look like this:
+				</p>
+				<pre>
+			if(alive){
+				if(count === r1 || count === r2)
+					newValue = live;
+				else
+					newValue = die;
+			}else{
+				if(count === r3 )
+					newValue = live;				
+			}
+				</pre>
+
+				
+				<p>
+				The first two rules are randomly selected from a range of numbers.
+				Both numbers are inclusive. Not seen here is rule 3, which is hardcoded as the number 2.
+				</p>
+
+				<pre>
+			var r1Min = 2;
+			var r1Max = 3;
+
+			var r2Min = 0;
+			var r2Max = 5;
+				</pre>
+		
+				<p>
+				After some trial-and-error, I went with whatever ranges yielded the best-looking patterns.
+				</p>
+				<p>
+				Since a cell in a hexagonal grid can have 6 neighbors, I had to observe 6x6x6 combinations before settling on the above ranges for the three rules.
+				Values outside these ranges are more likely to create patterns that flash rapidly or patterns that don't grow.
+				</p>
+
+				<p>
+				Mouse over a snowflake to animate it.
+				</p>
+						<br>
+
+						<div id="outer4" class="canvas_holder">
+						</div>
+
+						<br>
+
+						<div id="outer5" class="canvas_holder">
+						</div>
+
+				<p>
+					Now check out 
+					<a href = "https://dyshn29a.github.io/snowflake_ca/multi/">
+					the multi-snowflake demo
+					</a>. Since this is the first draft of a graphics-heavy project, expect some slowness.
+				</p>
+
+				<br>
+				<p>
+					<a href="http://jigsaw.w3.org/css-validator/check/referer">
+						<img style="border:0;width:88px;height:31px"
+							src="http://jigsaw.w3.org/css-validator/images/vcss"
+							alt="Valid CSS!" />
+					</a>
+				</p>
+					   
+			</div>
+			</div>
 		<script type="text/javascript" src="multi/scripts/render.js"></script>
 		<script type="text/javascript" src="gol_intro.js"></script>
 		<script type="text/javascript" src="run_single.js"></script>

@@ -19,35 +19,6 @@ var Game = (function(){
             return ~~(Math.random() * (max - min + 1)) + min;
         }
 
-		function GetThing(height, width){
-			var thing = 
-			[
-				[0,0,0,0,0,0,0,0],
-				[0,0,1,0,0,0,0,0],
-				[0,1,1,1,0,0,0,0],
-				[1,0,0,1,0,0,0,0],
-				[1,1,0,0,0,0,0,0],
-				[0,0,0,0,0,0,0,0],
-				[0,0,0,0,0,0,0,0],
-				[0,0,0,0,0,0,0,0],
-				[0,0,0,1,0,0,0,0],
-				[1,0,1,0,0,0,0,0],
-				[1,0,1,0,0,0,0,0],
-				[1,1,0,1,0,0,0,0],
-				[0,0,1,1,0,0,0,0]
-			];
-
-			var board = GetEmptyBoard(height, width);
-			
-			for(var i = 0; i < 13; i++){
-				for(var j = 0; j < 8; j++){
-					board[i][j] = thing[i][j];
-				}
-			}
-
-			return board;
-		}
-
 		function GetGliderGun(height, width){
 
 			var glider = 
@@ -156,7 +127,6 @@ var Game = (function(){
 		}
 
 		return {
-			GetThing: GetThing,
 			GetGliderGun: GetGliderGun, 
 			ClearBoard: ClearBoard,
 			ProcessGrid: ProcessGrid,
@@ -323,7 +293,6 @@ var Game = (function(){
 
 		RunCanvas("canvas1", "outer1", Generator.GetRandomBoard, 30, 60);
 		RunCanvas("canvas2", "outer2", Generator.GetGliderGun, 25, 40);
-		RunCanvas("canvas3", "outer3", Generator.GetThing, 25, 40);
 
 	})();
 
