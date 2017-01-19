@@ -1,0 +1,44 @@
+
+/*
+
+An example of css-only parallax:
+http://keithclark.co.uk/articles/pure-css-parallax-websites/
+The above demo is vertical. I adjusted it to display horizontally.
+The elements being transformed are no longer written directly in the html file.
+Now any number of elements can be added dynamically with jquery.
+
+*/
+
+html, body {
+	background-color: black;
+	margin: 0;
+	height:100vh;
+}
+
+#parallax {
+  -webkit-perspective-origin: 50% 50%;  
+  perspective-origin: 50% 50%;
+  -webkit-perspective: 1px;
+  perspective: 1px;
+  height: 100vh;
+  overflow: auto;
+}
+
+#load {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   background-color: #000;
+   z-index: 99;
+   text-align: center;
+}
+
+#loadingContainer {
+	position: relative;
+  	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
